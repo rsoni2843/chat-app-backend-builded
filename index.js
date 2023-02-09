@@ -22,7 +22,7 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 const io = new socket_io_1.Server(server, {
   cors: {
-    origin: "https://famous-kataifi-db2ab2.netlify.app/",
+    origin: "https://famous-kataifi-db2ab2.netlify.app",
     methods: ["GET", "POST"],
     credentials: true,
   },
