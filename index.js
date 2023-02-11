@@ -16,6 +16,8 @@ const PORT = process.env.PORT || 8000;
 const MONGO_URL = process.env.MONGO_URL || "";
 const server = http_1.default.createServer(app);
 const corsOptions = {
+    path: "/socket.io",
+    transports: ["websocket"],
     origin: "https://chat-app-rsoni2843.web.app",
     credentials: true,
     optionSuccessStatus: 200,
@@ -26,6 +28,8 @@ app.get("/", (req, res) => res.send("Home route working."));
 app.use("/user", user_routes_1.default);
 app.use("/chat", chat_routes_1.default);
 const io = new socket_io_1.Server(server, {
+    path: "/socket.io",
+    transports: ["websocket"],
     cors: corsOptions,
 });
 io.on("connection", (socket) => {
