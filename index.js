@@ -22,7 +22,7 @@ app.use("/user", user_routes_1.default);
 app.use("/chat", chat_routes_1.default);
 const io = new socket_io_1.Server(server, {
     cors: {
-        origin: "https://chat-app-rsoni2843.web.app/",
+        origin: "https://chat-app-rsoni2843.web.app",
         methods: ["GET", "POST"],
         credentials: true,
     },
