@@ -15,12 +15,11 @@ const PORT = process.env.PORT || 8000;
 const MONGO_URL = process.env.MONGO_URL || "";
 // const server = http.createServer(app);
 const corsOptions = {
-    path: "/socket.io",
-    transports: ["websocket", "polling"],
-    origin: "wss://chat-app-rsoni2843.web.app",
-    // origin: "wss://localhost:3000",
+    transports: ["polling"],
+    origin: "https://chat-app-rsoni2843.web.app",
+    path: "/socket.io/",
+    withCredentials: true,
     credentials: true,
-    optionSuccessStatus: 200,
 };
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
@@ -51,7 +50,11 @@ const server = app.listen(PORT, () => {
 });
 // const io = socket(server)
 const io = new socket_io_1.Server(server, {
-    cors: corsOptions,
+    cors: {
+        origin: "*",
+        credentials: true,
+        methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"]
+    },
 });
 // global.onlineUsers = new Map();
 io.on("connection", (socket) => {
